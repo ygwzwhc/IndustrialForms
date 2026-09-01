@@ -61,6 +61,10 @@ public static class DependencyInjection
         service.AddMapping("数据库文件", "Database file");
         service.AddMapping("参数条目", "Parameters");
         service.AddMapping("通信协议", "Protocols");
+        service.AddMapping("通用型上位机 UI 框架骨架，不含原步进电机项目的业务参数与私有协议。", "General-purpose HMI UI framework skeleton; stepper motor parameters and private protocols are excluded.");
+        service.AddMapping("联系作者", "Contact");
+        service.AddMapping("无法打开邮件客户端", "Unable to open email client");
+        service.AddMapping("无法打开浏览器", "Unable to open browser");
 
         return service;
     }

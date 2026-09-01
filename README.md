@@ -1,5 +1,9 @@
 # IndustrialForms
 
+[![.NET 10](https://img.shields.io/badge/.NET-10-512BD4?logo=dotnet&logoColor=white)](https://dotnet.microsoft.com/)
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](./LICENSE)
+[![GitHub](https://img.shields.io/badge/GitHub-ygwzwhc/IndustrialForms-181717?logo=github)](https://github.com/ygwzwhc/IndustrialForms)
+
 工业级 WinForms 上位机 UI 框架 · .NET 10
 
 一个面向工业上位机 / HMI 桌面应用场景的 **WinForms UI 框架骨架**。它把一套成熟的桌面端架构（依赖注入、多语言、日志、子窗体管理、导航布局、SQLite 数据持久化）沉淀为可复用的模板，让新项目从“搭架构”中解放出来，专注于业务本身。
