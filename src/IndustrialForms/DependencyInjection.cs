@@ -1,5 +1,6 @@
 using IndustrialForms.Core.Localization;
 using IndustrialForms.Core.Messaging;
+using IndustrialForms.Core.Storage;
 using IndustrialForms.UI;
 using Microsoft.Extensions.DependencyInjection;
 
@@ -21,6 +22,11 @@ public static class DependencyInjection
         // 基础设施
         services.AddSingleton<ILanguageService>(_ => BuildLanguageService());
         services.AddSingleton<FormMediator>();
+
+        // 数据存储（SQLite：参数 + 通信协议持久化）
+        services.AddSingleton<AppDatabase>();
+        services.AddSingleton<ParameterRepository>();
+        services.AddSingleton<ProtocolRepository>();
 
         // 窗体
         services.AddTransient<MainForm>();
@@ -51,6 +57,10 @@ public static class DependencyInjection
         service.AddMapping("触发一条提示", "Trigger a toast");
         service.AddMapping("操作成功", "Operation succeeded");
         service.AddMapping("工业级 WinForms 上位机 UI 框架", "Industrial WinForms HMI UI Framework");
+        service.AddMapping("数据存储", "Data Storage");
+        service.AddMapping("数据库文件", "Database file");
+        service.AddMapping("参数条目", "Parameters");
+        service.AddMapping("通信协议", "Protocols");
 
         return service;
     }
