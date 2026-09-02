@@ -21,6 +21,7 @@ public class BaseChildForm : Form
     private readonly TaskCompletionSource<bool> _loadCompleted =
         new(TaskCreationOptions.RunContinuationsAsynchronously);
     private bool _disposed;
+    private bool _uiInitialized;
 
     /// <summary>当前窗体使用的多语言服务。</summary>
     protected readonly ILanguageService Language;
@@ -46,7 +47,10 @@ public class BaseChildForm : Form
         AutoScaleMode = AutoScaleMode.Font;
         Text = _formNameCn;
 
-        InitializeUi();
+        // 注意：此处不调用 InitializeUi()。
+        // 构造函数阶段派生类字段尚未初始化，若 InitializeUi 依赖构造函数注入的依赖
+        // （如 SQLite 仓库），会触发 NullReferenceException。
+        // 界面构建统一延迟到 OnLoad（此时派生类字段已就绪）执行。
 
         Load += OnLoad;
         FormClosed += OnFormClosed;
@@ -56,7 +60,7 @@ public class BaseChildForm : Form
         }
     }
 
-    /// <summary>供子类在构造函数中构建界面，替代设计器生成的 InitializeComponent。</summary>
+    /// <summary>供子类构建界面（首次 Load 时调用），替代设计器生成的 InitializeComponent。</summary>
     protected virtual void InitializeUi()
     {
     }
@@ -83,6 +87,12 @@ public class BaseChildForm : Form
 
         try
         {
+            if (!_uiInitialized)
+            {
+                _uiInitialized = true;
+                InitializeUi();
+            }
+
             OnFormLoaded();
             _loadCompleted.TrySetResult(true);
         }
