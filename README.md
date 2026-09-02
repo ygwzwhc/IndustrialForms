@@ -66,6 +66,42 @@
 
 ---
 
+## 界面展示
+
+以下是基于本框架构建的典型工业上位机界面效果：
+
+### 主界面
+
+![主界面](./docs/screenshots/main-window.png)
+
+工业上位机主界面，采用左侧导航树 + 右侧内容区 + 底部状态栏的经典三段式布局，集成设备连接、参数配置、运动控制、状态监控等主要功能入口，顶部菜单栏支持中英文切换。
+
+### 电机参数表
+
+![电机参数表](./docs/screenshots/motor-parameters.png)
+
+电机参数读写界面，以表格形式展示参数的编号、名称与当前值，支持参数在线修改、导入导出与批量读写，参数统一持久化到 SQLite 数据库。
+
+### 电机运动控制
+
+![电机运动控制](./docs/screenshots/motion-control.png)
+
+运动控制操作界面，提供点动、定位、速度模式等控制方式，实时回显电机的运行状态、当前位置与目标值，用于调试与手动操作。
+
+### 对象字典界面
+
+![对象字典](./docs/screenshots/object-dictionary.png)
+
+通信对象字典查看界面，展示对象索引、子索引、数据类型与读写属性，用于协议调试与对象映射排查。
+
+### 示波器界面
+
+![示波器](./docs/screenshots/oscilloscope.png)
+
+实时波形示波器，多通道显示速度、位置、电流等曲线，支持缩放、游标测量与数据导出，用于运动过程分析。
+
+---
+
 ## 数据持久化：SQLite
 
 工业上位机中，设备运行参数和通信协议配置需要持久化保存。本框架内置基于 SQLite 的数据层，目标就是**“单文件、零配置、免环境”**：
@@ -119,8 +155,15 @@ IndustrialForms/
 │       ├── SettingsForm.cs            # 示例：设置
 │       ├── LogViewerForm.cs           # 日志查看器
 │       └── AboutForm.cs               # 示例：关于
-├── docs/images/
-│   └── architecture.png               # 架构图
+├── docs/
+│   ├── images/
+│   │   └── architecture.png           # 架构图
+│   └── screenshots/                   # 界面截图
+│       ├── main-window.png
+│       ├── motor-parameters.png
+│       ├── motion-control.png
+│       ├── object-dictionary.png
+│       └── oscilloscope.png
 ├── LICENSE
 └── README.md
 ```
